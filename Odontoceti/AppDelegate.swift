@@ -10,12 +10,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+  
   var window: UIWindow?
 
-
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    
+    // Set up the tab bar and it's view controllers.
+    let sensorsViewController = SensorsViewController()
+    
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.rootViewController = sensorsViewController
+    window?.makeKeyAndVisible()
+    
     return true
   }
 

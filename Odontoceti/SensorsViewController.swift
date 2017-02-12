@@ -1,0 +1,64 @@
+//
+//  ViewController.swift
+//  Odontoceti
+//
+//  Created by Gregory Foster on 2/12/17.
+//  Copyright © 2017 Greg M Foster. All rights reserved.
+//
+
+import UIKit
+
+class SensorsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  
+  lazy var tableView: UITableView = {
+    let _tableView = UITableView()
+    _tableView.delegate = self
+    _tableView.dataSource = self
+    _tableView.alwaysBounceVertical = true
+    _tableView.backgroundColor = UIColor.clear
+    _tableView.register(SensorTableViewCell.self, forCellReuseIdentifier: SensorTableViewCell.reuseIdentifier)
+    return _tableView
+  }()
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    view.backgroundColor = .odo_blue
+    
+    tableView.frame = view.bounds
+    view.addSubview(tableView)
+  }
+
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  
+  // MARK: - UITableViewDatasource
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 75.0
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: SensorTableViewCell.reuseIdentifier) as! SensorTableViewCell
+    switch indexPath.row {
+      case 0: cell.dataSource = SensorGyro()
+      default: cell.dataSource = nil
+    }
+    return cell
+  }
+}
+
