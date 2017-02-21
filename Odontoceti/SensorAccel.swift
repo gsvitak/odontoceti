@@ -1,5 +1,5 @@
 //
-//  SensorGyro.swift
+//  SensorAccel.swift
 //  Odontoceti
 //
 //  Created by Gregory Foster on 2/12/17.
@@ -9,22 +9,22 @@
 import Foundation
 import CoreMotion
 
-class SensorGyro: NSObject, SensorTableViewCellDataSource {
+class SensorAccel: NSObject, SensorTableViewCellDataSource {
   
   private let manager = CMMotionManager()
   public var sensorTitle: String {
-    return "Gyroscope"
+    return "Accel"
   }
   
   public var updateHandler: (([NSNumber]) -> Void)?
   
   override init() {
     super.init()
-    manager.startGyroUpdates(to: OperationQueue.main, withHandler: {gyroData, error in
-      if let data = gyroData {
-        let values = [NSNumber(value:data.rotationRate.x),
-                      NSNumber(value:data.rotationRate.y),
-                      NSNumber(value:data.rotationRate.z)]
+    manager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: {accelData, error in
+      if let data = accelData {
+        let values = [NSNumber(value:data.acceleration.x),
+                      NSNumber(value:data.acceleration.y),
+                      NSNumber(value:data.acceleration.z)]
         
         if let handler = self.updateHandler {
           handler(values)

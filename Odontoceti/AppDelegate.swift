@@ -17,9 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Set up the tab bar and it's view controllers.
     let sensorsViewController = SensorsViewController()
+    let magnetGridViewController = MagnetGrid()
+    let mapViewController = MapViewController()
+    let tabBarController = UITabBarController()
+    tabBarController.setViewControllers([magnetGridViewController, mapViewController, sensorsViewController], animated: false)
+    
+    _ = MagnetSensor.sharedSensor
     
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = sensorsViewController
+    window?.rootViewController = tabBarController
     window?.makeKeyAndVisible()
     
     return true

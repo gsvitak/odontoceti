@@ -10,8 +10,7 @@ import UIKit
 
 protocol SensorTableViewCellDataSource {
   var sensorTitle: String {get}
-  var sensorData: NSNumber {get}
-  public func startDataCapture
+  var updateHandler: (([NSNumber])->Void)? {get set}
 }
 
 class SensorTableViewCell: UITableViewCell {
@@ -27,10 +26,24 @@ class SensorTableViewCell: UITableViewCell {
     return _titleLabel
   }()
   
-  lazy var dataLabel: UILabel = {
+  lazy var dataLabelX: UILabel = {
     let _dataLabel = UILabel()
     _dataLabel.textColor = .white
-    _dataLabel.font = UIFont.systemFont(ofSize: 25.0)
+    _dataLabel.font = UIFont.systemFont(ofSize: 20.0)
+    return _dataLabel
+  }()
+  
+  lazy var dataLabelY: UILabel = {
+    let _dataLabel = UILabel()
+    _dataLabel.textColor = .white
+    _dataLabel.font = UIFont.systemFont(ofSize: 20.0)
+    return _dataLabel
+  }()
+  
+  lazy var dataLabelZ: UILabel = {
+    let _dataLabel = UILabel()
+    _dataLabel.textColor = .white
+    _dataLabel.font = UIFont.systemFont(ofSize: 20.0)
     return _dataLabel
   }()
   
@@ -39,9 +52,17 @@ class SensorTableViewCell: UITableViewCell {
       fatalError("You cannot read from this object.")
     }
     set {
-      self.titleLabel.text = newValue?.sensorTitle
-      self.dataLabel.text = newValue?.sensorData.stringValue
+      if var ds = newValue {
+        ds.updateHandler = sensorDataDidChange
+        self.titleLabel.text = ds.sensorTitle
+      }
     }
+  }
+  
+  public func sensorDataDidChange(values: [NSNumber]) {
+    dataLabelX.text = values[0].stringValue
+    dataLabelY.text = values[1].stringValue
+    dataLabelZ.text = values[2].stringValue
   }
   
   override func layoutSubviews() {
@@ -52,12 +73,25 @@ class SensorTableViewCell: UITableViewCell {
                               width: width/2.0 - margin * 2,
                               height: height - margin * 2)
     
-    dataLabel.frame = CGRect(x: margin + width / 2.0,
-                             y: margin,
-                             width: width/2.0 - margin * 2,
-                             height: height - margin * 2)
+    dataLabelX.frame = CGRect(x: margin + width / 2.0,
+                              y: margin,
+                              width: width/2.0 - margin * 2,
+                              height: (height - margin * 2)/3)
+    
+    dataLabelY.frame = CGRect(x: dataLabelX.x,
+                              y: margin + dataLabelX.height,
+                              width: dataLabelX.width,
+                              height: dataLabelX.height)
+    
+    dataLabelZ.frame = CGRect(x: dataLabelX.x,
+                              y: margin + dataLabelX.height * 2,
+                              width: dataLabelX.width,
+                              height: dataLabelX.height)
+    
     addSubview(titleLabel)
-    addSubview(dataLabel)
+    addSubview(dataLabelX)
+    addSubview(dataLabelY)
+    addSubview(dataLabelZ)
     backgroundColor = .clear
   }
 }

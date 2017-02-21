@@ -1,5 +1,5 @@
 //
-//  SensorGyro.swift
+//  SensorMagnet.swift
 //  Odontoceti
 //
 //  Created by Gregory Foster on 2/12/17.
@@ -9,22 +9,22 @@
 import Foundation
 import CoreMotion
 
-class SensorGyro: NSObject, SensorTableViewCellDataSource {
+class SensorMagnet: NSObject, SensorTableViewCellDataSource {
   
   private let manager = CMMotionManager()
   public var sensorTitle: String {
-    return "Gyroscope"
+    return "Magnet"
   }
   
   public var updateHandler: (([NSNumber]) -> Void)?
   
   override init() {
     super.init()
-    manager.startGyroUpdates(to: OperationQueue.main, withHandler: {gyroData, error in
-      if let data = gyroData {
-        let values = [NSNumber(value:data.rotationRate.x),
-                      NSNumber(value:data.rotationRate.y),
-                      NSNumber(value:data.rotationRate.z)]
+    manager.startMagnetometerUpdates(to: OperationQueue.main, withHandler: {magnetData, error in
+      if let data = magnetData {
+        let values = [NSNumber(value:data.magneticField.x),
+                      NSNumber(value:data.magneticField.y),
+                      NSNumber(value:data.magneticField.z)]
         
         if let handler = self.updateHandler {
           handler(values)
@@ -33,3 +33,4 @@ class SensorGyro: NSObject, SensorTableViewCellDataSource {
     })
   }
 }
+

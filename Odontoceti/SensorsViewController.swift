@@ -45,17 +45,19 @@ class SensorsViewController: UIViewController, UITableViewDelegate, UITableViewD
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return 3
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 75.0
+    return 125.0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: SensorTableViewCell.reuseIdentifier) as! SensorTableViewCell
     switch indexPath.row {
       case 0: cell.dataSource = SensorGyro()
+      case 1: cell.dataSource = SensorAccel()
+      case 2: cell.dataSource = SensorMagnet()
       default: cell.dataSource = nil
     }
     return cell
