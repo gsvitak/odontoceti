@@ -37,9 +37,10 @@ class CartographerViewController: UIViewController {
     if let button = curButton, let mag = notification.userInfo?["value"] as? Double {
       Map.sharedMap.update(location:buttonLocations[button]!, value:mag)
       for (button, path) in self.buttonLocations {
-        let val = Map.sharedMap.normalizedValueFor(location: path)
-        button.backgroundColor = UIColor.colorBetween(.blue, andColor: .red, percent: CGFloat(val))
-        button.setTitle(String(format: "%.2f", val), for: .normal)
+        let nVal = Map.sharedMap.normalizedValueFor(location: path)
+        let val = Map.sharedMap.valueFor(location: path)
+        button.backgroundColor = UIColor.colorBetween(.blue, andColor: .red, percent: CGFloat(nVal))
+        button.setTitle(String(format: "%.0f", val), for: .normal)
       }
     }
   }

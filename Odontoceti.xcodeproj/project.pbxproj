@@ -7,24 +7,65 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C82B81111E69D5980042F882 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82B81101E69D5980042F882 /* Stats.swift */; };
+		C82B811C1E69D8240042F882 /* OdontocetiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82B811B1E69D8240042F882 /* OdontocetiTests.swift */; };
+		C82B81331E69F70A0042F882 /* ParticleDistributionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82B81321E69F70A0042F882 /* ParticleDistributionView.swift */; };
+		C890DE151E5B979600A43AF0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C890DE141E5B979600A43AF0 /* MapViewController.swift */; };
+		C890DE171E5B986F00A43AF0 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C890DE161E5B986F00A43AF0 /* Map.swift */; };
 		C8D3215F1E50FC7D00B0BE21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3215E1E50FC7D00B0BE21 /* AppDelegate.swift */; };
-		C8D321611E50FC7D00B0BE21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321601E50FC7D00B0BE21 /* ViewController.swift */; };
-		C8D321641E50FC7D00B0BE21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D321621E50FC7D00B0BE21 /* Main.storyboard */; };
+		C8D321611E50FC7D00B0BE21 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321601E50FC7D00B0BE21 /* SensorsViewController.swift */; };
 		C8D321661E50FC7D00B0BE21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8D321651E50FC7D00B0BE21 /* Assets.xcassets */; };
 		C8D321691E50FC7D00B0BE21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D321671E50FC7D00B0BE21 /* LaunchScreen.storyboard */; };
+		C8D321711E51022100B0BE21 /* style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321701E51022100B0BE21 /* style.swift */; };
+		C8D321751E51067F00B0BE21 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321741E51067F00B0BE21 /* SensorTableViewCell.swift */; };
+		C8D321771E5109E000B0BE21 /* SensorGyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321761E5109E000B0BE21 /* SensorGyro.swift */; };
+		C8D321791E51336D00B0BE21 /* SensorAccel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321781E51336D00B0BE21 /* SensorAccel.swift */; };
+		C8D3217B1E51492E00B0BE21 /* SensorMagnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3217A1E51492E00B0BE21 /* SensorMagnet.swift */; };
+		C8D3217D1E51555300B0BE21 /* CartographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */; };
+		C8DAF9731E5BE86B009730FD /* MagnetSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C82B811E1E69D8240042F882 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8D321531E50FC7C00B0BE21 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8D3215A1E50FC7C00B0BE21;
+			remoteInfo = Odontoceti;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		C82B81101E69D5980042F882 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		C82B81191E69D8240042F882 /* OdontocetiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdontocetiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82B811B1E69D8240042F882 /* OdontocetiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdontocetiTests.swift; sourceTree = "<group>"; };
+		C82B811D1E69D8240042F882 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C82B81321E69F70A0042F882 /* ParticleDistributionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticleDistributionView.swift; sourceTree = "<group>"; };
+		C890DE141E5B979600A43AF0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C890DE161E5B986F00A43AF0 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		C8D3215B1E50FC7D00B0BE21 /* Odontoceti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Odontoceti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8D3215E1E50FC7D00B0BE21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8D321601E50FC7D00B0BE21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C8D321631E50FC7D00B0BE21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C8D321601E50FC7D00B0BE21 /* SensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
 		C8D321651E50FC7D00B0BE21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8D321681E50FC7D00B0BE21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8D3216A1E50FC7D00B0BE21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8D321701E51022100B0BE21 /* style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = style.swift; path = styles/style.swift; sourceTree = "<group>"; };
+		C8D321741E51067F00B0BE21 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
+		C8D321761E5109E000B0BE21 /* SensorGyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorGyro.swift; sourceTree = "<group>"; };
+		C8D321781E51336D00B0BE21 /* SensorAccel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAccel.swift; sourceTree = "<group>"; };
+		C8D3217A1E51492E00B0BE21 /* SensorMagnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMagnet.swift; sourceTree = "<group>"; };
+		C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartographerViewController.swift; sourceTree = "<group>"; };
+		C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetSensor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C82B81161E69D8240042F882 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8D321581E50FC7C00B0BE21 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -35,10 +76,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C82B811A1E69D8240042F882 /* OdontocetiTests */ = {
+			isa = PBXGroup;
+			children = (
+				C82B811B1E69D8240042F882 /* OdontocetiTests.swift */,
+				C82B811D1E69D8240042F882 /* Info.plist */,
+			);
+			path = OdontocetiTests;
+			sourceTree = "<group>";
+		};
 		C8D321521E50FC7C00B0BE21 = {
 			isa = PBXGroup;
 			children = (
 				C8D3215D1E50FC7D00B0BE21 /* Odontoceti */,
+				C82B811A1E69D8240042F882 /* OdontocetiTests */,
 				C8D3215C1E50FC7D00B0BE21 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C8D3215B1E50FC7D00B0BE21 /* Odontoceti.app */,
+				C82B81191E69D8240042F882 /* OdontocetiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,8 +107,14 @@
 			isa = PBXGroup;
 			children = (
 				C8D3215E1E50FC7D00B0BE21 /* AppDelegate.swift */,
-				C8D321601E50FC7D00B0BE21 /* ViewController.swift */,
-				C8D321621E50FC7D00B0BE21 /* Main.storyboard */,
+				C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */,
+				C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */,
+				C890DE161E5B986F00A43AF0 /* Map.swift */,
+				C890DE141E5B979600A43AF0 /* MapViewController.swift */,
+				C82B81321E69F70A0042F882 /* ParticleDistributionView.swift */,
+				C8D321601E50FC7D00B0BE21 /* SensorsViewController.swift */,
+				C8D321731E51066800B0BE21 /* Sensor Logs */,
+				C8D321721E51022700B0BE21 /* Style */,
 				C8D321651E50FC7D00B0BE21 /* Assets.xcassets */,
 				C8D321671E50FC7D00B0BE21 /* LaunchScreen.storyboard */,
 				C8D3216A1E50FC7D00B0BE21 /* Info.plist */,
@@ -64,9 +122,47 @@
 			path = Odontoceti;
 			sourceTree = "<group>";
 		};
+		C8D321721E51022700B0BE21 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				C8D321701E51022100B0BE21 /* style.swift */,
+				C82B81101E69D5980042F882 /* Stats.swift */,
+			);
+			name = Style;
+			sourceTree = "<group>";
+		};
+		C8D321731E51066800B0BE21 /* Sensor Logs */ = {
+			isa = PBXGroup;
+			children = (
+				C8D321741E51067F00B0BE21 /* SensorTableViewCell.swift */,
+				C8D321761E5109E000B0BE21 /* SensorGyro.swift */,
+				C8D321781E51336D00B0BE21 /* SensorAccel.swift */,
+				C8D3217A1E51492E00B0BE21 /* SensorMagnet.swift */,
+			);
+			name = "Sensor Logs";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C82B81181E69D8240042F882 /* OdontocetiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C82B81201E69D8240042F882 /* Build configuration list for PBXNativeTarget "OdontocetiTests" */;
+			buildPhases = (
+				C82B81151E69D8240042F882 /* Sources */,
+				C82B81161E69D8240042F882 /* Frameworks */,
+				C82B81171E69D8240042F882 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C82B811F1E69D8240042F882 /* PBXTargetDependency */,
+			);
+			name = OdontocetiTests;
+			productName = OdontocetiTests;
+			productReference = C82B81191E69D8240042F882 /* OdontocetiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C8D3215A1E50FC7C00B0BE21 /* Odontoceti */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8D3216D1E50FC7D00B0BE21 /* Build configuration list for PBXNativeTarget "Odontoceti" */;
@@ -74,6 +170,7 @@
 				C8D321571E50FC7C00B0BE21 /* Sources */,
 				C8D321581E50FC7C00B0BE21 /* Frameworks */,
 				C8D321591E50FC7C00B0BE21 /* Resources */,
+				C82B810E1E64F1270042F882 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -94,8 +191,14 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Greg M Foster";
 				TargetAttributes = {
+					C82B81181E69D8240042F882 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C8D3215A1E50FC7C00B0BE21;
+					};
 					C8D3215A1E50FC7C00B0BE21 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2V7W69N399;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -114,44 +217,87 @@
 			projectRoot = "";
 			targets = (
 				C8D3215A1E50FC7C00B0BE21 /* Odontoceti */,
+				C82B81181E69D8240042F882 /* OdontocetiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C82B81171E69D8240042F882 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8D321591E50FC7C00B0BE21 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C8D321691E50FC7D00B0BE21 /* LaunchScreen.storyboard in Resources */,
 				C8D321661E50FC7D00B0BE21 /* Assets.xcassets in Resources */,
-				C8D321641E50FC7D00B0BE21 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C82B810E1E64F1270042F882 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		C82B81151E69D8240042F882 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C82B811C1E69D8240042F882 /* OdontocetiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8D321571E50FC7C00B0BE21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8D321611E50FC7D00B0BE21 /* ViewController.swift in Sources */,
+				C82B81331E69F70A0042F882 /* ParticleDistributionView.swift in Sources */,
+				C890DE171E5B986F00A43AF0 /* Map.swift in Sources */,
+				C82B81111E69D5980042F882 /* Stats.swift in Sources */,
+				C8D321611E50FC7D00B0BE21 /* SensorsViewController.swift in Sources */,
+				C8D321771E5109E000B0BE21 /* SensorGyro.swift in Sources */,
+				C8DAF9731E5BE86B009730FD /* MagnetSensor.swift in Sources */,
+				C8D321751E51067F00B0BE21 /* SensorTableViewCell.swift in Sources */,
+				C8D321711E51022100B0BE21 /* style.swift in Sources */,
+				C890DE151E5B979600A43AF0 /* MapViewController.swift in Sources */,
+				C8D321791E51336D00B0BE21 /* SensorAccel.swift in Sources */,
+				C8D3217D1E51555300B0BE21 /* CartographerViewController.swift in Sources */,
 				C8D3215F1E50FC7D00B0BE21 /* AppDelegate.swift in Sources */,
+				C8D3217B1E51492E00B0BE21 /* SensorMagnet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		C8D321621E50FC7D00B0BE21 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C8D321631E50FC7D00B0BE21 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		C82B811F1E69D8240042F882 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8D3215A1E50FC7C00B0BE21 /* Odontoceti */;
+			targetProxy = C82B811E1E69D8240042F882 /* PBXContainerItemProxy */;
 		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
 		C8D321671E50FC7D00B0BE21 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -163,6 +309,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C82B81211E69D8240042F882 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OdontocetiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = gregmfoster.OdontocetiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Odontoceti.app/Odontoceti";
+			};
+			name = Debug;
+		};
+		C82B81221E69D8240042F882 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OdontocetiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = gregmfoster.OdontocetiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Odontoceti.app/Odontoceti";
+			};
+			name = Release;
+		};
 		C8D3216B1E50FC7D00B0BE21 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -258,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2V7W69N399;
 				INFOPLIST_FILE = Odontoceti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gregmfoster.Odontoceti;
@@ -270,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2V7W69N399;
 				INFOPLIST_FILE = Odontoceti/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = gregmfoster.Odontoceti;
@@ -281,6 +455,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C82B81201E69D8240042F882 /* Build configuration list for PBXNativeTarget "OdontocetiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C82B81211E69D8240042F882 /* Debug */,
+				C82B81221E69D8240042F882 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C8D321561E50FC7C00B0BE21 /* Build configuration list for PBXProject "Odontoceti" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -297,6 +479,7 @@
 				C8D3216F1E50FC7D00B0BE21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

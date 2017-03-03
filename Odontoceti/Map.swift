@@ -115,27 +115,32 @@ class Map: NSObject {
     return CGPoint(x: 0.5, y: 0.5)
   }
 
+  private func normalizeWeights() {
+    let s: Double = particles.reduce(0, {$0 + $1.weight})
+      particles = particles.map({ (p: Particle) -> Particle in
+      var p = p
+      p.weight = p.weight / s
+      return p
+    })
+  }
+
 
   // Update the current set of weights with some new measurement m.
   func updateWeights(measurement: Double) {
-    let lambda: Double = 0.01
     for i in particles.indices {
       var p = particles[i]
       let y: Double = Map.sharedMap.valueFor(location: Point(xLoc: p.xLoc, yLoc: p.yLoc))
       // Lambda dictates how quicky weights grow.
       // Increase the weight of the particle if it is close to the measurement.
-      p.weight += lambda / abs(y - measurement)
+      p.weight = p.weight * Stats.normalPDF(measure: measurement, mean: y, sigma: 10)
       particles[i] = p
     }
     // Now normalize the weights.
-    let s: Double = particles.reduce(0, {$0 + $1.weight})
-    particles = particles.map({ (p: Particle) -> Particle in
-      var p = p
-      p.weight = p.weight / s
-      return p
-    })
+    normalizeWeights()
     // Now resample
     resampleParticles()
+    // Normalize the weights again
+    normalizeWeights()
   }
 
   // Randomly generate a number between 0 and 1
@@ -173,10 +178,11 @@ class Map: NSObject {
 
     // Create some percentage of random particles each time to prevent getting stuck.
     let randomCount: Int = Int(0.1 * Double(numParticles))
+    let averageWeight: Double = particles.reduce(0, {$0 + $1.weight}) / Double(numParticles)
     for _ in 0..<randomCount {
       let x = Int(random() * Double(gridSize))
       let y = Int(random() * Double(gridSize))
-      newParticles.append(Particle(xLoc: x, yLoc: y, weight: 0.002))
+      newParticles.append(Particle(xLoc: x, yLoc: y, weight: averageWeight))
     }
 
     for _ in 0..<numParticles - randomCount {
@@ -191,4 +197,21 @@ class Map: NSObject {
     return Double(count) / Double(particles.count)
   }
 
+  func particleDistribution() -> [Double] {
+    var dist = [Double](repeating: 0, count: 10)
+    var total = 0
+    for p in particles {
+      dist[Int(p.weight * 10)] += 1
+      total += 1
+    }
+    return dist.map({$0 / Double(total)})
+    
+//    var dist = [Double](repeating: 0, count: gridSize)
+//    var total = 0
+//    for p in particles {
+//      dist[p.yLoc] += 1
+//      total += 1
+//    }
+//    return dist.map({$0 / Double(total)})
+  }
 }

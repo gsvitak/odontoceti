@@ -13,6 +13,8 @@ class MapViewController: UIViewController {
   var runningLocationPoint = CGPoint(x: 0.5, y: 0.5)
   var filtering: Bool = false
 
+  var particleDistributionView = ParticleDistributionView(data:Map.sharedMap.particleDistribution())
+
   lazy var tiles: [Point: UIView] = {
     var _tiles = [Point: UIView]()
     for p in Map.sharedMap.points {
@@ -36,11 +38,22 @@ class MapViewController: UIViewController {
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    let w: CGFloat = view.width / CGFloat(Map.sharedMap.gridSize)
-    let h: CGFloat = view.height / CGFloat(Map.sharedMap.gridSize)
+    let chartHeight: CGFloat = 60.0
+    let w: CGFloat = CGFloat(view.width) / CGFloat(Map.sharedMap.gridSize)
+    let h: CGFloat = (view.height - chartHeight) / CGFloat(Map.sharedMap.gridSize)
+    
+    particleDistributionView.frame = CGRect(x: 0,
+                                            y: 0,
+                                            width: view.width,
+                                            height: chartHeight)
+    view.addSubview(particleDistributionView)
+    
     for p in Map.sharedMap.points {
       if let tile = tiles[p] {
-        tile.frame = CGRect(x: CGFloat(p.xLoc) * w, y: CGFloat(p.yLoc) * h, width: w, height: h)
+        tile.frame = CGRect(x: CGFloat(p.xLoc) * w,
+                            y: chartHeight + CGFloat(p.yLoc) * h,
+                            width: w,
+                            height: h)
         view.addSubview(tile)
       }
     }
@@ -58,7 +71,6 @@ class MapViewController: UIViewController {
     for p in Map.sharedMap.points {
       if let tile = tiles[p] {
         let likelihood = Map.sharedMap.likelihood(point:p)
-        print(likelihood)
         tile.backgroundColor = UIColor.colorBetween(.black,
                                                     andColor: .white,
                                                     percent: CGFloat(likelihood))
@@ -71,6 +83,7 @@ class MapViewController: UIViewController {
       if let magnitude = notification.userInfo?["value"] as? Double {
         Map.sharedMap.updateWeights(measurement: magnitude)
         updateTiles()
+        particleDistributionView.data = Map.sharedMap.particleDistribution()
       }
     }
   }

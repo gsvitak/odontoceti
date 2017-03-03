@@ -28,6 +28,7 @@ class MagnetSensor: NSObject, CLLocationManagerDelegate {
   override init() {
     super.init()
     locationManager.delegate = self
+//    motionManager.deviceMotionUpdateInterval = TimeInterval(0.02)
     locationManager.startUpdatingHeading()
     motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical,
                                            to: OperationQueue.main,
