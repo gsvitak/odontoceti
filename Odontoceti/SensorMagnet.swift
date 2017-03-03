@@ -10,14 +10,14 @@ import Foundation
 import CoreMotion
 
 class SensorMagnet: NSObject, SensorTableViewCellDataSource {
-  
+
   private let manager = CMMotionManager()
   public var sensorTitle: String {
     return "Magnet"
   }
-  
+
   public var updateHandler: (([NSNumber]) -> Void)?
-  
+
   override init() {
     super.init()
     manager.startMagnetometerUpdates(to: OperationQueue.main, withHandler: {magnetData, error in
@@ -25,7 +25,7 @@ class SensorMagnet: NSObject, SensorTableViewCellDataSource {
         let values = [NSNumber(value:data.magneticField.x),
                       NSNumber(value:data.magneticField.y),
                       NSNumber(value:data.magneticField.z)]
-        
+
         if let handler = self.updateHandler {
           handler(values)
         }
@@ -33,4 +33,3 @@ class SensorMagnet: NSObject, SensorTableViewCellDataSource {
     })
   }
 }
-

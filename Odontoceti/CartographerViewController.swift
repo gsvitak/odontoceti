@@ -8,18 +8,19 @@
 
 import UIKit
 
-class MagnetGrid: UIViewController {
-  
-  var buttonLocations = [UIButton: IndexPath]()
+class CartographerViewController: UIViewController {
+
+  var buttonLocations = [UIButton: Point]()
   var curButton: UIButton?
-  
+
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nil, bundle: nil)
+    tabBarItem.title = "Mapper"
     for y in 0..<Map.sharedMap.gridSize {
       for x in 0..<Map.sharedMap.gridSize {
         let cur = UIButton()
         cur.addTarget(self, action: #selector(buttonPressed(button:)), for: .touchUpInside)
-        buttonLocations[cur] = IndexPath(item: x, section: y)
+        buttonLocations[cur] = Point(xLoc: x, yLoc: y)
       }
     }
     NotificationCenter.default.addObserver(self,
@@ -27,7 +28,7 @@ class MagnetGrid: UIViewController {
                                            name: MagnetSensor.updateNotificationName,
                                            object: nil)
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
@@ -35,7 +36,6 @@ class MagnetGrid: UIViewController {
   func magneticReading(notification: Notification) {
     if let button = curButton, let mag = notification.userInfo?["value"] as? Double {
       Map.sharedMap.update(location:buttonLocations[button]!, value:mag)
-//      print(mag)
       for (button, path) in self.buttonLocations {
         let val = Map.sharedMap.normalizedValueFor(location: path)
         button.backgroundColor = UIColor.colorBetween(.blue, andColor: .red, percent: CGFloat(val))
@@ -43,11 +43,11 @@ class MagnetGrid: UIViewController {
       }
     }
   }
-  
+
   override func viewDidLayoutSubviews() {
-    for (button, path) in buttonLocations {
-      let x = path.item
-      let y = path.section
+    for (button, point) in buttonLocations {
+      let x = point.xLoc
+      let y = point.yLoc
       button.frame = CGRect(x: view.width * CGFloat(x) / CGFloat(Map.sharedMap.gridSize),
                                   y: view.height * CGFloat(y) / CGFloat(Map.sharedMap.gridSize),
                                   width: view.width / CGFloat(Map.sharedMap.gridSize),
@@ -57,13 +57,12 @@ class MagnetGrid: UIViewController {
       view.addSubview(button)
     }
   }
-  
-  func buttonPressed(button:UIButton) {
+
+  func buttonPressed(button: UIButton) {
     if let curButton = curButton, button == curButton {
       curButton.layer.borderWidth = 0.0
-      self.curButton = nil;
-    }
-    else {
+      self.curButton = nil
+    } else {
       curButton?.layer.borderWidth = 0.0
       curButton = button
       button.layer.borderWidth = 5.0
