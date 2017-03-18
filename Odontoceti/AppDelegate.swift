@@ -11,42 +11,25 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-  var window: UIWindow?
+    var window: UIWindow?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions
-      launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions
+        launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 
-    // Set up the tab bar and it's view controllers.
-    let sensorsViewController = SensorsViewController()
-    let cartographerViewController = CartographerViewController()
-    let mapViewController = MapViewController()
-    let tabBarController = UITabBarController()
-    tabBarController.setViewControllers([cartographerViewController,
-                                         mapViewController,
-                                         sensorsViewController], animated: false)
-    _ = MagnetSensor.sharedSensor
+        // Set up the tab bar and it's view controllers.
+        let sensorsViewController = SensorsViewController()
+        let cartographerViewController = CartographerViewController()
+        let mapViewController = MapViewController()
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([cartographerViewController,
+                                             mapViewController,
+                                             sensorsViewController], animated: false)
+        _ = MagnetDataSource.sharedSensor
 
-    window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = tabBarController
-    window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
 
-    return true
-  }
-
-  func applicationWillResignActive(_ application: UIApplication) {
-  }
-
-  func applicationDidEnterBackground(_ application: UIApplication) {
-  }
-
-  func applicationWillEnterForeground(_ application: UIApplication) {
-  }
-
-  func applicationDidBecomeActive(_ application: UIApplication) {
-  }
-
-  func applicationWillTerminate(_ application: UIApplication) {
-  }
-
-
+        return true
+    }
 }

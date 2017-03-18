@@ -13,7 +13,7 @@ extension UIColor {
     return UIColor(red: 0.02745098039, green: 0.003921568627, blue: 0.1411764706, alpha: 1)
   }
 
-  class func colorBetween(_ color: UIColor, andColor: UIColor, percent: CGFloat) -> UIColor {
+  class func colorBetween(color: UIColor, andColor: UIColor, percent: CGFloat) -> UIColor {
     var (r1, g1, b1, a1) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
     var (r2, g2, b2, a2) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
 

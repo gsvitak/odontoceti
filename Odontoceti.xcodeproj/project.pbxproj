@@ -16,13 +16,13 @@
 		C8D321611E50FC7D00B0BE21 /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321601E50FC7D00B0BE21 /* SensorsViewController.swift */; };
 		C8D321661E50FC7D00B0BE21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8D321651E50FC7D00B0BE21 /* Assets.xcassets */; };
 		C8D321691E50FC7D00B0BE21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D321671E50FC7D00B0BE21 /* LaunchScreen.storyboard */; };
-		C8D321711E51022100B0BE21 /* style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321701E51022100B0BE21 /* style.swift */; };
+		C8D321711E51022100B0BE21 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321701E51022100B0BE21 /* Style.swift */; };
 		C8D321751E51067F00B0BE21 /* SensorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321741E51067F00B0BE21 /* SensorTableViewCell.swift */; };
 		C8D321771E5109E000B0BE21 /* SensorGyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321761E5109E000B0BE21 /* SensorGyro.swift */; };
 		C8D321791E51336D00B0BE21 /* SensorAccel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D321781E51336D00B0BE21 /* SensorAccel.swift */; };
 		C8D3217B1E51492E00B0BE21 /* SensorMagnet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3217A1E51492E00B0BE21 /* SensorMagnet.swift */; };
 		C8D3217D1E51555300B0BE21 /* CartographerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */; };
-		C8DAF9731E5BE86B009730FD /* MagnetSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */; };
+		C8DAF9731E5BE86B009730FD /* MagnetDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DAF9721E5BE86B009730FD /* MagnetDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +49,13 @@
 		C8D321651E50FC7D00B0BE21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8D321681E50FC7D00B0BE21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8D3216A1E50FC7D00B0BE21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8D321701E51022100B0BE21 /* style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = style.swift; path = styles/style.swift; sourceTree = "<group>"; };
+		C8D321701E51022100B0BE21 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Style.swift; path = styles/Style.swift; sourceTree = "<group>"; };
 		C8D321741E51067F00B0BE21 /* SensorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorTableViewCell.swift; sourceTree = "<group>"; };
 		C8D321761E5109E000B0BE21 /* SensorGyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorGyro.swift; sourceTree = "<group>"; };
 		C8D321781E51336D00B0BE21 /* SensorAccel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorAccel.swift; sourceTree = "<group>"; };
 		C8D3217A1E51492E00B0BE21 /* SensorMagnet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMagnet.swift; sourceTree = "<group>"; };
 		C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartographerViewController.swift; sourceTree = "<group>"; };
-		C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetSensor.swift; sourceTree = "<group>"; };
+		C8DAF9721E5BE86B009730FD /* MagnetDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagnetDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				C8D3215E1E50FC7D00B0BE21 /* AppDelegate.swift */,
-				C8DAF9721E5BE86B009730FD /* MagnetSensor.swift */,
+				C8DAF9721E5BE86B009730FD /* MagnetDataSource.swift */,
 				C8D3217C1E51555300B0BE21 /* CartographerViewController.swift */,
 				C890DE161E5B986F00A43AF0 /* Map.swift */,
 				C890DE141E5B979600A43AF0 /* MapViewController.swift */,
@@ -125,7 +125,7 @@
 		C8D321721E51022700B0BE21 /* Style */ = {
 			isa = PBXGroup;
 			children = (
-				C8D321701E51022100B0BE21 /* style.swift */,
+				C8D321701E51022100B0BE21 /* Style.swift */,
 				C82B81101E69D5980042F882 /* Stats.swift */,
 			);
 			name = Style;
@@ -276,9 +276,9 @@
 				C82B81111E69D5980042F882 /* Stats.swift in Sources */,
 				C8D321611E50FC7D00B0BE21 /* SensorsViewController.swift in Sources */,
 				C8D321771E5109E000B0BE21 /* SensorGyro.swift in Sources */,
-				C8DAF9731E5BE86B009730FD /* MagnetSensor.swift in Sources */,
+				C8DAF9731E5BE86B009730FD /* MagnetDataSource.swift in Sources */,
 				C8D321751E51067F00B0BE21 /* SensorTableViewCell.swift in Sources */,
-				C8D321711E51022100B0BE21 /* style.swift in Sources */,
+				C8D321711E51022100B0BE21 /* Style.swift in Sources */,
 				C890DE151E5B979600A43AF0 /* MapViewController.swift in Sources */,
 				C8D321791E51336D00B0BE21 /* SensorAccel.swift in Sources */,
 				C8D3217D1E51555300B0BE21 /* CartographerViewController.swift in Sources */,
@@ -462,6 +462,7 @@
 				C82B81221E69D8240042F882 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8D321561E50FC7C00B0BE21 /* Build configuration list for PBXProject "Odontoceti" */ = {
 			isa = XCConfigurationList;

@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
     tabBarItem.title = "Localizer"
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(self.magneticReading(notification:)),
-                                           name: MagnetSensor.updateNotificationName,
+                                           name: MagnetDataSource.updateNotificationName,
                                            object: nil)
   }
 
@@ -41,13 +41,13 @@ class MapViewController: UIViewController {
     let chartHeight: CGFloat = 60.0
     let w: CGFloat = CGFloat(view.width) / CGFloat(Map.sharedMap.gridSize)
     let h: CGFloat = (view.height - chartHeight) / CGFloat(Map.sharedMap.gridSize)
-    
+
     particleDistributionView.frame = CGRect(x: 0,
                                             y: 0,
                                             width: view.width,
                                             height: chartHeight)
     view.addSubview(particleDistributionView)
-    
+
     for p in Map.sharedMap.points {
       if let tile = tiles[p] {
         tile.frame = CGRect(x: CGFloat(p.xLoc) * w,
@@ -71,7 +71,7 @@ class MapViewController: UIViewController {
     for p in Map.sharedMap.points {
       if let tile = tiles[p] {
         let likelihood = Map.sharedMap.likelihood(point:p)
-        tile.backgroundColor = UIColor.colorBetween(.black,
+        tile.backgroundColor = UIColor.colorBetween(color: .black,
                                                     andColor: .white,
                                                     percent: CGFloat(likelihood))
       }
