@@ -25,7 +25,7 @@ class MagnetDataSource: NSObject {
     override init() {
         super.init()
 //        motionManager.deviceMotionUpdateInterval = TimeInterval(0.02)
-        motionManager.startDeviceMotionUpdates(using: .xArbitraryCorrectedZVertical,
+        motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
                                                to: OperationQueue.main,
                                                withHandler: {motionData, error in
             let x = motionData?.magneticField.field.x
@@ -33,6 +33,7 @@ class MagnetDataSource: NSObject {
             let z = motionData?.magneticField.field.z
             if let x = x, let y = y, let z = z {
                 let mag = pow(pow(x, 2.0) + pow(y, 2.0) + pow(z, 2.0), 0.5)
+                print(mag)
                 NotificationCenter.default.post(name: MagnetDataSource.updateNotificationName,
                                                 object: nil,
                                                 userInfo: ["value": mag])

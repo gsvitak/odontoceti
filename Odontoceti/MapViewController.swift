@@ -81,6 +81,7 @@ class MapViewController: UIViewController {
     func magneticReading(note: Notification) {
         if !pauseFiltering {
             if let magnitude = note.userInfo?["value"] as? Double {
+//                print(magnitude)
                 Map.sharedMap.updateWeights(measurement: magnitude)
                 updateTiles()
                 particleDistView.data = Map.sharedMap.particleDistribution()

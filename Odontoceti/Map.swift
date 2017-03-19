@@ -55,7 +55,7 @@ extension Int {
 class Map: NSObject {
 
     /// The number of particles for particle filtering.
-    private let numParticles = 500
+    private let numParticles = 100
     /// The array storing the current particles.
     private var particles = [Particle]()
     /// The rate at which the particle filtering itterates.
