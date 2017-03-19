@@ -25,17 +25,21 @@ struct Point: Hashable {
     }
 }
 
-/// Extra comparison definition allowing points to be equated to particles.
+/**
+    Extra comparison definition allowing points to be equated to particles.
+
+    - parameter left:       One point.
+    - parameter right:      The other point.
+    - returns:              Bool indicating equality.
+ */
 func == (left: Point, right: Point) -> Bool {
     return left.xLoc == right.xLoc && left.yLoc == right.yLoc
 }
 
-/// Extra comparison definition allowing points to be equated to particles.
 func == (left: Particle, right: Point) -> Bool {
     return left.xLoc == right.xLoc && left.yLoc == right.yLoc
 }
 
-/// Extra comparison definition allowing points to be equated to particles.
 func == (left: Point, right: Particle) -> Bool {
     return left.xLoc == right.xLoc && left.yLoc == right.yLoc
 }
@@ -174,12 +178,12 @@ class Map: NSObject {
 
     // Set all the weights to have equal probability.
     private func initializeParticles() {
-        let pPerLoc = numParticles / (gridSize*gridSize)
+        let n = numParticles / (gridSize*gridSize)
         let w = Double(1) / Double(numParticles)
 
         for y in 0..<gridSize {
             for x in 0..<gridSize {
-                particles += [Particle](repeating: Particle(xLoc: x, yLoc: y, weight: w), count: pPerLoc)
+                particles += [Particle](repeating: Particle(xLoc: x, yLoc: y, weight: w), count: n)
             }
         }
     }

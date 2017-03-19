@@ -38,7 +38,10 @@ class CartographerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    /// When a reading comes in, update the currently selected tile.
+    /**
+     Handle notifications containing the current magnitude reading for the phone.
+     - parameter note: The notification containing the magnitude.
+     */
     @objc private func magneticReading(note: Notification) {
         if let button = curButton, let mag = note.userInfo?["value"] as? Double {
             Map.sharedMap.update(location:buttonLocations[button]!, value:mag)
