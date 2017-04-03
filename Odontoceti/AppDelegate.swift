@@ -24,7 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.setViewControllers([cartographerViewController,
                                              mapViewController,
                                              sensorsViewController], animated: false)
-        _ = MagnetDataSource.sharedSensor
+
+        // Initialize the sensor model singletons.
+        _ = MagnetModel.sharedModel
+        _ = MotionModel.sharedModel
+        _ = OrientationModel.sharedModel
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController

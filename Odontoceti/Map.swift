@@ -51,6 +51,14 @@ extension Int {
     }
 }
 
+func += ( left: inout CGPoint, right: CGPoint) {
+    left.x += right.x
+    left.y += right.y
+}
+
+
+// MARK: - Map Object
+
 /// The Map represents the data backing of the current map for measuring and particle filtering.
 class Map: NSObject {
 
@@ -58,15 +66,19 @@ class Map: NSObject {
     private let numParticles = 100
     /// The array storing the current particles.
     private var particles = [Particle]()
-    /// The rate at which the particle filtering itterates.
+    /// The constant limiting rate at which new mag readings adjust the declared current magnitude.
     private let updateRate: Double
     /// The array of points representing the grid.
     private var grid = [Point: Double]()
     /// The size of the grid to be used throughout the entire app.
     let gridSize: Int
+    lazy var CGGridSize: CGSize = {
+        return CGSize(width: UIScreen.main.bounds.size.width / CGFloat(self.gridSize),
+                      height: UIScreen.main.bounds.size.height / CGFloat(self.gridSize))
+    }()
 
     /// The singleton map object to be used throughout the entire app.
-    static let sharedMap = Map(gridSize: 5, updateRate: 0.05)
+    static let sharedMap = Map(gridSize: 5, updateRate: 0.3)
 
     lazy var points: [Point] = {
         var _points = [Point]()
@@ -93,6 +105,8 @@ class Map: NSObject {
             }
         }
     }
+
+    // MARK: - Grid writing and reading methods
 
     func update(location: Point, value: Double) {
         if let curVal = grid[location] {
@@ -140,17 +154,68 @@ class Map: NSObject {
         })
     }
 
+//    private func gridToCGPoint(grid: Point) -> CGPoint {
+//        return CGPoint(x: UIScreen.main.bounds.size.width * CGFloat(grid.xLoc) / CGFloat(gridSize),
+//                     y: UIScreen.main.bounds.size.height * CGFloat(grid.yLoc) / CGFloat(gridSize))
+//    }
+//
+    private func CGPointToGrid(point: CGPoint) -> CGPoint {
+        let halfW: CGFloat = UIScreen.main.bounds.size.width / CGFloat(gridSize) / 2.0
+        let halfH: CGFloat = UIScreen.main.bounds.size.height / CGFloat(gridSize) / 2.0
+        let x = CGFloat(gridSize) * (point.x - halfW) / UIScreen.main.bounds.size.width
+        let y = CGFloat(gridSize) * (point.y - halfH) / UIScreen.main.bounds.size.height
+        return CGPoint(x: x, y: y)
+    }
+//
+//    private func distVector(a: CGPoint, grid: Point) -> CGPoint {
+//        let b = gridToCGPoint(grid: grid)
+//        return CGPoint(x: a.x - b.x, y: a.y - b.y)
+//    }
+
+    // MARK: - Particle Filtering
 
     // Update the current set of weights with some new measurement m.
     func updateWeights(measurement: Double) {
+        // Consider the dead-reckoning model as well.
+        let dr: CGPoint = CGPointToGrid(point: DeadReckoningModel.sharedModel.currentLocation)
+        var drPull: CGPoint = CGPoint(x: 0, y: 0)
+        let damp: CGFloat = 0.001
         for i in particles.indices {
-            var p = particles[i]
-            let y: Double = Map.sharedMap.valueFor(location: Point(xLoc: p.xLoc, yLoc: p.yLoc))
+            let op = particles[i]
+            var np = Particle(xLoc: op.xLoc, yLoc: op.yLoc, weight: op.weight)
+            let y: Double = Map.sharedMap.valueFor(location: Point(xLoc: np.xLoc, yLoc: np.yLoc))
             // Lambda dictates how quicky weights grow.
+            let lambda: Double = 0.1
             // Increase the weight of the particle if it is close to the measurement.
-            p.weight = p.weight * Stats.normalPDF(measure: measurement, mean: y, sigma: 10)
-            particles[i] = p
+            np.weight =
+                np.weight * Stats.normalPDF(measure: measurement, mean: y, sigma: 10) * lambda
+            // Increase the weight of the particle based on its proximity to the dead reckoning.
+            np.weight = np.weight * Stats.normalPDF(measure: Double(op.xLoc),
+                                                    mean: Double(dr.x),
+                                                    sigma: 5)
+            np.weight = np.weight * Stats.normalPDF(measure: Double(op.yLoc),
+                                                    mean: Double(dr.y),
+                                                    sigma: 5)
+
+            var xFactor = CGGridSize.width * damp
+            if dr.x > CGFloat(np.xLoc) {
+                xFactor *= -1
+            }
+            drPull.x += CGFloat(Stats.normalPDF(measure: Double(dr.x),
+                                                mean: Double(np.xLoc),
+                                                sigma: Double(gridSize))) * xFactor
+
+            var yFactor = CGGridSize.height * damp
+            if dr.y > CGFloat(np.yLoc) + 0.5 {
+                yFactor *= -1
+            }
+            drPull.y += CGFloat(Stats.normalPDF(measure: Double(dr.y),
+                                                mean: Double(np.yLoc),
+                                                sigma: Double(gridSize))) * yFactor
+            particles[i] = np
         }
+        // Adjust dead reckoning by the net pull on it.
+        DeadReckoningModel.sharedModel.currentLocation += drPull
         // Now normalize the weights.
         normalizeWeights()
         // Now resample
@@ -230,13 +295,5 @@ class Map: NSObject {
             total += 1
         }
         return dist.map({$0 / Double(total)})
-
-//    var dist = [Double](repeating: 0, count: gridSize)
-//    var total = 0
-//    for p in particles {
-//      dist[p.yLoc] += 1
-//      total += 1
-//    }
-//    return dist.map({$0 / Double(total)})
     }
 }

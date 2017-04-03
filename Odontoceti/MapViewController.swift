@@ -10,8 +10,26 @@ import UIKit
 
 class MapViewController: UIViewController {
 
-    var runningLocationPoint = CGPoint(x: 0.5, y: 0.5)
-    var pauseFiltering: Bool = true
+    private lazy var userArrowView: UserArrowView = {
+        let _userArrowView = UserArrowView(frame:CGRect(x: 0, y: 0, width: 30.0, height: 30.0))
+        return _userArrowView
+    }()
+
+    /// Update this computed variable to move the user point view.
+    public var deadReckoningPos: CGPoint {
+        set {
+            UIView.animate(withDuration: MotionModel.sharedModel.rate, animations: {
+                self.userArrowView.center = newValue
+                let orientation = CGFloat(OrientationModel.sharedModel.orientation)
+                self.userArrowView.transform = CGAffineTransform(rotationAngle: orientation)
+            })
+        }
+        get {
+            return userArrowView.frame.origin
+        }
+    }
+
+    private var pauseFiltering: Bool = true
 
     var particleDistView = ParticleDistributionView(data:Map.sharedMap.particleDistribution())
 
@@ -28,7 +46,7 @@ class MapViewController: UIViewController {
         tabBarItem.title = "Localizer"
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.magneticReading(note:)),
-                                               name: MagnetDataSource.updateNotificationName,
+                                               name: MagnetModel.updateNotificationName,
                                                object: nil)
     }
 
@@ -57,6 +75,13 @@ class MapViewController: UIViewController {
                 view.addSubview(tile)
             }
         }
+        view.addSubview(userArrowView)
+        let panGesture = UIPanGestureRecognizer(target: self,
+                                                action: #selector(pannedArrow(gesture:)))
+        view.addGestureRecognizer(panGesture)
+        let rotateGesture = UIRotationGestureRecognizer(target: self,
+                                                        action: #selector(rotatedArrow(gesture:)))
+        view.addGestureRecognizer(rotateGesture)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -81,11 +106,28 @@ class MapViewController: UIViewController {
     func magneticReading(note: Notification) {
         if !pauseFiltering {
             if let magnitude = note.userInfo?["value"] as? Double {
-//                print(magnitude)
                 Map.sharedMap.updateWeights(measurement: magnitude)
                 updateTiles()
                 particleDistView.data = Map.sharedMap.particleDistribution()
             }
+            // Update the deadReckoning position while we're at it.
+            deadReckoningPos = DeadReckoningModel.sharedModel.currentLocation
+        }
+    }
+
+    func pannedArrow(gesture: UIPanGestureRecognizer) {
+        if gesture.state == .changed {
+            let change = gesture.translation(in: self.view)
+            DeadReckoningModel.sharedModel.currentLocation.x += change.x
+            DeadReckoningModel.sharedModel.currentLocation.y += change.y
+            gesture.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
+        }
+    }
+
+    func rotatedArrow(gesture: UIRotationGestureRecognizer) {
+        if gesture.state == .changed {
+            OrientationModel.sharedModel.offset += Double(gesture.rotation)
+            gesture.rotation = 0
         }
     }
 }

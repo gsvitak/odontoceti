@@ -27,10 +27,10 @@ class CartographerViewController: UIViewController {
                 buttonLocations[cur] = Point(xLoc: x, yLoc: y)
             }
         }
-        // Watch for notifications from MagnetDataSource
+        // Watch for notifications from MagnetModel
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.magneticReading(note:)),
-                                               name: MagnetDataSource.updateNotificationName,
+                                               name: MagnetModel.updateNotificationName,
                                                object: nil)
     }
 
