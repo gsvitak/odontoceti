@@ -111,15 +111,15 @@ class MapViewController: UIViewController {
                 particleDistView.data = Map.sharedMap.particleDistribution()
             }
             // Update the deadReckoning position while we're at it.
-            deadReckoningPos = DeadReckoningModel.sharedModel.currentLocation
+//            deadReckoningPos = DeadReckoningModel.sharedModel.currentLocation
         }
     }
 
     func pannedArrow(gesture: UIPanGestureRecognizer) {
         if gesture.state == .changed {
-            let change = gesture.translation(in: self.view)
-            DeadReckoningModel.sharedModel.currentLocation.x += change.x
-            DeadReckoningModel.sharedModel.currentLocation.y += change.y
+            _ = gesture.translation(in: self.view)
+//            DeadReckoningModel.sharedModel.currentLocation.x += change.x
+//            DeadReckoningModel.sharedModel.currentLocation.y += change.y
             gesture.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
         }
     }

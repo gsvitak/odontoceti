@@ -177,7 +177,8 @@ class Map: NSObject {
     // Update the current set of weights with some new measurement m.
     func updateWeights(measurement: Double) {
         // Consider the dead-reckoning model as well.
-        let dr: CGPoint = CGPointToGrid(point: DeadReckoningModel.sharedModel.currentLocation)
+//        let dr: CGPoint = CGPointToGrid(point: DeadReckoningModel.sharedModel.currentLocation)
+        let dr: CGPoint = CGPoint(x: 0, y: 0)
         var drPull: CGPoint = CGPoint(x: 0, y: 0)
         let damp: CGFloat = 0.001
         for i in particles.indices {
@@ -215,7 +216,7 @@ class Map: NSObject {
             particles[i] = np
         }
         // Adjust dead reckoning by the net pull on it.
-        DeadReckoningModel.sharedModel.currentLocation += drPull
+//        DeadReckoningModel.sharedModel.currentLocation += drPull
         // Now normalize the weights.
         normalizeWeights()
         // Now resample
